@@ -167,6 +167,14 @@ public class MainController {
   model.addAttribute("bookingId", book);
   model.addAttribute("availableSeats", movie.getAvailabilityOfSeats());
 
+  int remainingCapacity = movie.getScreenCapacity() - bookRepo.getTotalBookedSeatsForMovie(movie.getMovieId());
+  model.addAttribute("availableSeats", remainingCapacity);
+
+  // Add an attribute to store the error message if it exists
+  if (session.getAttribute("errorMsg") != null) {
+   model.addAttribute("errorMsg", session.getAttribute("errorMsg"));
+   session.removeAttribute("errorMsg");
+  }
   return "booking";
  }
  @PostMapping("/movies/{id}")
@@ -194,6 +202,7 @@ public class MainController {
    model.addAttribute("movie", movie);
    model.addAttribute("bookingId", book);
    model.addAttribute("availableSeats", movie.getAvailabilityOfSeats());
+   session.setAttribute("errorMsg", "Seats exceed the available capacity. Please try again.");
    return "booking";
   }
  }

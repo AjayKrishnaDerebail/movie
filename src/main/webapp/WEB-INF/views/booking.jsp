@@ -77,6 +77,7 @@
  placeholder="${movie.movieName }" readonly> --%> <h1>Booking</h1>
     <div class="container">
       <sp:form action="/movies/{id}" method="post" modelAttribute="bookingId">
+      <span id="errorMsg" style="color: red">${errorMsg}</span>
         <div class="d-inline-flex p-2">
           <br>Movie Name <br>
           <sp:input path="movieName" value="${movie.movieName }" class="form-control d-inline-flex p-2" type="text" placeholder="${movie.movieName }" readonly="true" />
@@ -131,8 +132,42 @@
           </sp:select>
         </div>
         <br>
+
         <button type="submit" class="btn btn-primary">Book</button>
       </sp:form>
+       <script>
+              // Function to hide the error message on page load
+              window.onload = function() {
+                  var errorMsg = document.getElementById("errorMsg");
+                  if (errorMsg.textContent.trim().length > 0) {
+                      errorMsg.style.display = "inline";
+                  } else {
+                      errorMsg.style.display = "none";
+                  }
+
+              };
+
+              // Function to check the form submission
+              document.getElementById("bookingForm").onsubmit = function(e) {
+                  var availableSeats = /* Get the available seats value here, you can store it in a hidden input field in your form */
+                  var selectedSeats = /* Get the number of seats selected by the user here */
+
+                  var errorMsg = document.getElementById("errorMsg");
+
+                  if (selectedSeats > availableSeats) {
+                      e.preventDefault(); // Prevent form submission
+                      errorMsg.textContent = "Seats exceed the available capacity. Please try again.";
+                      errorMsg.style.display = "inline";
+                  } else {
+                      errorMsg.style.display = "none";
+                  }
+                 // Function to redirect to the same page when refreshing
+                         if (window.history.replaceState) {
+                             window.history.replaceState(null, null, window.location.href);
+                         }
+
+              };
+          </script>
     </div>
   </body>
 </html>
