@@ -1,9 +1,7 @@
 package com.movie.bean;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 @Entity
 public class BookingTable {
  @Id
@@ -14,14 +12,18 @@ public class BookingTable {
  private String movieName;
  private String showTime;
  private int numOfSeats;
+
+
  private int price;
  private String userID;
+
+ private Integer movieId;
 
  public BookingTable () {
   super();
  }
 
- public BookingTable (Integer bookingId, String name, String theaterName, String movieName, String showTime, int numOfSeats, int price, String userID) {
+ public BookingTable (Integer bookingId,Integer movieId, String name, String theaterName, String movieName, String showTime, int numOfSeats, int price, String userID) {
   this.bookingId = bookingId;
   this.name = name;
   this.theaterName = theaterName;
@@ -30,12 +32,20 @@ public class BookingTable {
   this.numOfSeats = numOfSeats;
   this.price = price;
   this.userID = userID;
+  this.movieId=movieId;
  }
 
  public Integer getBookingId () {
   return bookingId;
  }
 
+ public Integer getMovieId() {
+  return movieId;
+ }
+
+ public void setMovieId(Integer movieId) {
+  this.movieId = movieId;
+ }
  public void setBookingId (Integer bookingId) {
   this.bookingId = bookingId;
  }
@@ -109,4 +119,5 @@ public class BookingTable {
           ", userID='" + userID + '\'' +
           '}';
  }
+
 }

@@ -80,6 +80,7 @@
         <div class="d-inline-flex p-2">
           <br>Movie Name <br>
           <sp:input path="movieName" value="${movie.movieName }" class="form-control d-inline-flex p-2" type="text" placeholder="${movie.movieName }" readonly="true" />
+          <sp:input type="hidden" path="movieId" value="${movie.movieId }" class="form-control"  />
           <br>
         </div>
         <div class="d-inline-flex p-2">
@@ -97,13 +98,19 @@
           <sp:input path="name" class="form-control" placeholder="Enter your Name" />
         </div>
         <br>
-        <div class="d-inline-flex p-2">
-          <br>
-          <label for="numOfSeats">Select Number of Seats</label>
-          <br>
-          <br>
-          <sp:input path="name" class="form-control" placeholder="Enter number of seats " />
-        </div>
+                <div class="d-inline-flex p-2">
+                    <label for="numOfSeats">Select Number of Seats</label>
+                    <br>
+                    <br>
+                    <sp:input path="numOfSeats" class="form-control" placeholder="Enter number of seats" />
+                    <form:errors path="numOfSeats" cssClass="text-danger" />
+
+                    <div class="d-inline-flex p-2">
+                        <p>Available Seats: ${availableSeats}</p>
+                    </div>
+                </div>
+
+
         <br>
         <div class="d-inline-flex p-2">
           <label for="exampleFormControlSelect1">Show Time</label>
@@ -114,6 +121,7 @@
             <option>9:00 PM-12:00 AM</option>
           </sp:select>
         </div>
+
         <br>
         <div class="d-inline-flex p-2">
           <label>Select Price</label>

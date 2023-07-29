@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="movies" , uniqueConstraints = {
         @UniqueConstraint(columnNames = {"theater", "screen_id"})
-        })
+})
 public class MovieList {
  @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,20 +22,21 @@ public class MovieList {
  private Theatre theater;
 
  private int screenCapacity;
-
+ private int availabilityOfSeats;
  public MovieList() {
 
- super();
+  super();
 
  }
 
- public MovieList (Integer movieId, String movieName, String genre, int screen_id, Theatre theater, int screenCapacity) {
+ public MovieList(Integer movieId, String movieName, String genre, int screen_id, Theatre theater, int screenCapacity, int availabilityOfSeats) {
   this.movieId = movieId;
   this.movieName = movieName;
   this.genre = genre;
   this.screen_id = screen_id;
   this.theater = theater;
   this.screenCapacity = screenCapacity;
+  this.availabilityOfSeats = availabilityOfSeats;
  }
 
  public Integer getMovieId() {
@@ -54,6 +55,14 @@ public class MovieList {
   this.movieName = movieName;
  }
 
+ public int getAvailabilityOfSeats() {
+  return availabilityOfSeats;
+ }
+
+ public void setAvailabilityOfSeats(int availabilityOfSeats) {
+  this.availabilityOfSeats = availabilityOfSeats;
+ }
+
  public String getGenre() {
   return genre;
  }
@@ -70,7 +79,7 @@ public class MovieList {
  }
 
  public Theatre getTheater() {
- return theater;
+  return theater;
 
  }
 
@@ -87,7 +96,7 @@ public class MovieList {
  }
 
  @Override
- public String toString () {
+ public String toString() {
   return "MovieList{" +
           "movieId=" + movieId +
           ", movieName='" + movieName + '\'' +
@@ -95,7 +104,7 @@ public class MovieList {
           ", screen_id=" + screen_id +
           ", theater=" + theater +
           ", screenCapacity=" + screenCapacity +
+          ", availabilityOfSeats=" + availabilityOfSeats +
           '}';
  }
 }
-

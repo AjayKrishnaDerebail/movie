@@ -3,9 +3,11 @@ package com.movie.controller;
 import java.util.List;
 import java.util.Random;
 
+import com.movie.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,10 +21,6 @@ import com.movie.bean.BookingTable;
 import com.movie.bean.CustomerDetails;
 import com.movie.bean.LoginCredentials;
 import com.movie.bean.MovieList;
-import com.movie.repository.AdminRepository;
-import com.movie.repository.BookingTableRepo;
-import com.movie.repository.CustomerDetailsRepository;
-import com.movie.repository.LoginCredentialsRepository;
 import com.movie.service.MovieService;
 import com.movie.service.TheatreService;
 
@@ -34,6 +32,8 @@ public class MainController {
  @Autowired
  CustomerDetailsRepository custRepo;
 
+ @Autowired
+ MovieListRepository movieRepo;
  @Autowired
  LoginCredentialsRepository logRepo;
 
@@ -161,27 +161,41 @@ public class MainController {
   if (user == null || session.getAttribute("userID") == null) {
    return "redirect:/";
   }
-  model.addAttribute("movie", moviSer.findByMovieId(id));
+
+  MovieList movie = moviSer.findByMovieId(id);
+  model.addAttribute("movie", movie);
   model.addAttribute("bookingId", book);
+  model.addAttribute("availableSeats", movie.getAvailabilityOfSeats());
+
   return "booking";
  }
-
  @PostMapping("/movies/{id}")
- public String bookedMovie(@ModelAttribute("bookingId") BookingTable book, HttpSession session, Model model,
-                           MovieList movie) {
+ public String bookedMovie(@ModelAttribute("bookingId") BookingTable book, HttpSession session, Model model, BindingResult bindingResult) {
   if (user == null || session.getAttribute("userID") == null) {
    return "redirect:/";
   }
-  bookRepo.save(book);
-  book.setMovieName(book.getMovieName());
-  book.setTheaterName(book.getTheaterName());
-  book.setPrice(book.getPrice() * book.getNumOfSeats());
-  book.setUserID(user);
-  bookRepo.save(book);
-  model.addAttribute("book", "Booked successfully");
-  model.addAttribute("booking", book);
-  return "redirect:/myBookings";
+  MovieList movie = moviSer.findByMovieId(book.getMovieId());
+  int bookedSeats = bookRepo.getTotalBookedSeatsForMovie(book.getMovieId()) + book.getNumOfSeats();
 
+  if (bookedSeats <= movie.getScreenCapacity()) {
+   book.setMovieName(movie.getMovieName());
+   book.setTheaterName(movie.getTheater().getThatreName());
+   book.setPrice(book.getPrice() * book.getNumOfSeats());
+   book.setUserID(user);
+   bookRepo.save(book);
+   movie.setAvailabilityOfSeats(movie.getAvailabilityOfSeats()-book.getNumOfSeats());
+   movieRepo.save(movie);
+   model.addAttribute("book", "Booked successfully");
+   model.addAttribute("booking", book);
+   return "redirect:/myBookings";
+  } else {
+   // Display error message when requested seats exceed available capacity
+   bindingResult.rejectValue("numOfSeats", "error.numOfSeats", "Seats exceed the available capacity. Please try again.");
+   model.addAttribute("movie", movie);
+   model.addAttribute("bookingId", book);
+   model.addAttribute("availableSeats", movie.getAvailabilityOfSeats());
+   return "booking";
+  }
  }
 
  @PostMapping("/myBookings")

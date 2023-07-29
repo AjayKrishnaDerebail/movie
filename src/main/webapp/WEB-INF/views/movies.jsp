@@ -58,7 +58,8 @@
             <th>Genre</th>
             <th>Theatre Name</th>
             <th>Screen No</th>
-            <th>Capacity</th>
+            <th>Total Capacity</th>
+            <th>Available Capacity</th>
             <th>Availability</th>
           </tr>
         </thead>
@@ -68,7 +69,8 @@
             <td>${movie.genre}</td>
             <td>${movie.theater.thatreName}</td>
             <td>${movie.screen_id}</td>
-            <td></td>
+            <td>${movie.screenCapacity}</td>
+            <td>${movie.availabilityOfSeats}</td>
             <td><a href="/movies/${movie.movieId}" class="btn btn-warning">Book Now</a></td>
           </tr>
         </c:forEach>

@@ -100,9 +100,10 @@ public class MovieController {
   movie.setTheater(movie.getTheater());
 
   movie.setScreenId(screenId);
+  movie.setAvailabilityOfSeats(movie.getScreenCapacity());
 
 
-   //movieService.saveMovie(movie);
+  //movieService.saveMovie(movie);
   try {
    // Code to save the movie to the database
    movieService.saveMovie(movie);
