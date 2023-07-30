@@ -11,7 +11,7 @@ The Online Cinema Ticket Booking System is a web-based application developed usi
 - Book movie tickets: Users can choose a movie, select the desired showtime, and book tickets online.
 - CRUD operations: Administrators have the ability to perform Create, Read, Update, and Delete operations on movie and theatre data.
 - Sign-in page: The system provides a secure sign-in page for users to authenticate themselves before accessing the ticket booking features.
-- Session management: User sessions are managed to ensure a seamless and secure browsing experience.
+
 
 
 
