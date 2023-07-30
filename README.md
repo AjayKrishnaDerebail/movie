@@ -13,33 +13,8 @@ The Online Cinema Ticket Booking System is a web-based application developed usi
 - Sign-in page: The system provides a secure sign-in page for users to authenticate themselves before accessing the ticket booking features.
 - Session management: User sessions are managed to ensure a seamless and secure browsing experience.
 
-## Installation
 
-To run the Online Cinema Ticket Booking System locally, follow these steps:
 
-1. Clone the repository:
-
-```
-git clone https://github.com/Sateesh079/Online_Cinema_Ticket_Booking_System.git
-```
-
-2. Navigate to the project directory:
-
-```
-cd online-cinema-ticket-booking
-```
-
-3. Build and run the application using Maven:
-
-```
-mvn spring-boot:run
-```
-
-4. Access the application in your web browser:
-
-```
-http://localhost:8082
-```
 
 ## Usage
 
@@ -53,10 +28,6 @@ http://localhost:8082
 
 5. CRUD Operations: Administrators can log in to access the admin dashboard. From there, they can add, update, or delete movie and theater information as needed. Customer Can login an perform customer operations
 
-## Configuration
 
-The Online Cinema Ticket Booking System can be configured using the following files:
-
-- `application.properties`: This file contains configuration properties such as the database connection details, server port, and other application-specific settings.
 
 </div>
