@@ -1,13 +1,15 @@
+<div align="justify">
+
 # Online Cinema Ticket Booking System
 
-The Online Cinema Ticket Booking System is a web-based application developed using Spring Boot and various technologies such as core Java, RESTful web services, Hibernate, JSP, HTML, and CSS. This system enables users to browse available movies, select theaters, and book movie tickets seamlessly. It also includes features like CRUD operations for managing movie and theater data, as well as a sign-in page with session management.
+The Online Cinema Ticket Booking System is a web-based application developed using Spring Boot and various technologies such as core Java, RESTful web services, Hibernate, JSP, HTML, and CSS. This system enables users to browse available movies, select theatres, and book movie tickets seamlessly. It also includes features like CRUD operations for managing movie and theatre data, as well as a sign-in page with session management.
 
 ## Features
 
-- Browse available movies: Users can view a list of movies currently playing in theaters.
-- Select theaters: Users can select their preferred theater from a list of available options.
+- Browse available movies: Users can view a list of movies currently playing in theatres.
+- Select theatres: Users can select their preferred theatre from available options.
 - Book movie tickets: Users can choose a movie, select the desired showtime, and book tickets online.
-- CRUD operations: Administrators have the ability to perform Create, Read, Update, and Delete operations on movie and theater data.
+- CRUD operations: Administrators have the ability to perform Create, Read, Update, and Delete operations on movie and theatre data.
 - Sign-in page: The system provides a secure sign-in page for users to authenticate themselves before accessing the ticket booking features.
 - Session management: User sessions are managed to ensure a seamless and secure browsing experience.
 
@@ -57,22 +59,4 @@ The Online Cinema Ticket Booking System can be configured using the following fi
 
 - `application.properties`: This file contains configuration properties such as the database connection details, server port, and other application-specific settings.
 
-## Contributing
-
-Contributions to the Online Cinema Ticket Booking System are welcome. To contribute, follow these steps:
-
-1. Fork the repository on GitHub.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them with descriptive commit messages.
-4. Push your changes to your forked repository.
-5. Submit a pull request to the main repository, explaining your changes and their purpose.
-
-## License
-
-The Online Cinema Ticket Booking System is licensed under the [MIT License](https://opensource.org/licenses/MIT).
-
-## Contact
-
-For any inquiries or feedback regarding the Online Cinema Ticket Booking System, please contact sateeshreddy079@gmail.com
-
-We hope you enjoy using the Online Cinema Ticket Booking System!
+</div>
