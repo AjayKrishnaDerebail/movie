@@ -39,6 +39,10 @@
       main {
         margin-top: 50px;
       }
+      .btn-disabled {
+         background-color: #ccc;
+         cursor: not-allowed;
+      }
     </style>
   </head>
   <body> ${msg} <div class="topnav">
@@ -71,7 +75,17 @@
             <td>${movie.screen_id}</td>
             <td>${movie.screenCapacity}</td>
             <td>${movie.availabilityOfSeats}</td>
-            <td><a href="/movies/${movie.movieId}" class="btn btn-warning">Book Now</a></td>
+             <td>
+                          <!-- Disable the "Book Now" button if availableSeats is zero -->
+                          <c:choose>
+                            <c:when test="${movie.availabilityOfSeats > 0}">
+                              <a href="/movies/${movie.movieId}" class="btn btn-warning">Book Now</a>
+                            </c:when>
+                            <c:otherwise>
+                              <button class="btn btn-disabled" disabled>Book Now</button>
+                            </c:otherwise>
+                          </c:choose>
+                        </td>
           </tr>
         </c:forEach>
       </table>

@@ -76,8 +76,8 @@
 
  placeholder="${movie.movieName }" readonly> --%> <h1>Booking</h1>
     <div class="container">
-      <sp:form action="/movies/{id}" method="post" modelAttribute="bookingId">
-      <span id="errorMsg" style="color: red">${errorMsg}</span>
+      <sp:form action="/movies/{id}" method="post" modelAttribute="bookingId" id="bookingForm">
+      <span id="errorMsg" style="color: red; font-size: 16px; font-weight: bold; margin-top: 10px; display: block;">${errorMsg}</span>
         <div class="d-inline-flex p-2">
           <br>Movie Name <br>
           <sp:input path="movieName" value="${movie.movieName }" class="form-control d-inline-flex p-2" type="text" placeholder="${movie.movieName }" readonly="true" />
@@ -96,14 +96,14 @@
 																		<option value="${name}">${name}</option>
 																	</c:forEach>
 																</select> --%> <div class="d-inline-flex p-2"> Name &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <br>
-          <sp:input path="name" class="form-control" placeholder="Enter your Name" />
+          <sp:input path="name" class="form-control" placeholder="Enter your Name" required="required"/>
         </div>
         <br>
                 <div class="d-inline-flex p-2">
                     <label for="numOfSeats">Select Number of Seats</label>
                     <br>
                     <br>
-                    <sp:input path="numOfSeats" class="form-control" placeholder="Enter number of seats" />
+                    <sp:input path="numOfSeats" type="number" class="form-control" placeholder="Enter number of seats" min="1" />
                     <form:errors path="numOfSeats" cssClass="text-danger" />
 
                     <div class="d-inline-flex p-2">
@@ -161,12 +161,7 @@
                   } else {
                       errorMsg.style.display = "none";
                   }
-                 // Function to redirect to the same page when refreshing
-                         if (window.history.replaceState) {
-                             window.history.replaceState(null, null, window.location.href);
-                         }
 
-              };
           </script>
     </div>
   </body>
