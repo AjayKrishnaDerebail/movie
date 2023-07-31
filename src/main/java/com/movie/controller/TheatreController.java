@@ -58,11 +58,11 @@ public class TheatreController {
 
  public Theatre findByTheatreId(@PathVariable("id") int id, HttpSession session) {
 
-  if (session.getAttribute("admin") == null) {
-
-   //return "redirect:/";
-
-  }
+//  if (session.getAttribute("admin") == null) {
+//
+//   //return "redirect:/";
+//
+//  }
 
   return theatreService.findByTheatreId(id);
 
@@ -91,8 +91,6 @@ public class TheatreController {
    return "redirect:/";
 
   }
-
-
   try {
    System.out.println("hello");
    theatreService.saveTheatre(theater);
@@ -100,11 +98,9 @@ public class TheatreController {
   } catch (DataIntegrityViolationException e) {
    // Handle the uniqueness constraint violation here
    m.addAttribute("errorMsg", "The theater name already exists. Please choose a different name.");
-
    // You can also add other error handling code as needed
    return "addTheater"; // Return the view with the error message
   }
-
   m.addAttribute("theaters", theatreService.TheatreList());
   return "redirect:/TheatreTable/List";
 
