@@ -78,7 +78,7 @@
                     <a href="/TheatreTable/updateTheater/${theatre.theatreId}" class="btn btn-warning">Update</a>
                   </td>
                   <td>
-                    <a href="/TheatreTable/deletTheater/${theatre.theatreId}" class="btn btn-warning">Delet</a>
+                    <a href="/TheatreTable/deletTheater/${theatre.theatreId}" class="btn btn-danger">Delete</a>
                   </td>
                 </tr>
               </c:forEach>
@@ -86,7 +86,7 @@
           </table>
         </c:if>
       </main>
-      <a href="addTheater" class="btn btn-primary">Add Theater</a>
+      <a href="addTheater" class="btn btn-success">Add Theater</a>
     </div>
   </body>
 </html>

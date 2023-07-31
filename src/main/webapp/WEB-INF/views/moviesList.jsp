@@ -71,7 +71,7 @@
                 <th>Movie Name</th>
                 <th>Genre</th>
                 <th width="80px">Update</th>
-                <th width="80px">Delet</th>
+                <th width="80px">Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -86,7 +86,7 @@
                     <a href="/MovieTable/updateMovie/${movie.movieId}" class="btn btn-warning">Update</a>
                   </td>
                   <td>
-                    <a href="/MovieTable/deletMovie/${movie.movieId}" class="btn btn-warning">Delet</a>
+                    <a href="/MovieTable/deletMovie/${movie.movieId}" class="btn btn-danger">Delete</a>
                   </td>
                 </tr>
               </c:forEach>
@@ -95,7 +95,7 @@
         </c:if>
       </main>
       <nav>
-        <a href="addMovie" class="btn btn-primary">Add Movie</a>
+        <a href="addMovie" class="btn btn-success" >Add Movie</a>
       </nav>
     </div>
   </body>
