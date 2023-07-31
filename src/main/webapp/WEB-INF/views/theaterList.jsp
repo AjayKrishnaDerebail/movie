@@ -64,7 +64,6 @@
                 <th>Theater Id</th>
                 <th>Theater Name</th>
                 <th>city</th>
-                <th width="80px">Update</th>
                 <th width="80px">Delet</th>
               </tr>
             </thead>
@@ -74,9 +73,6 @@
                   <td>${theatre.theatreId}</td>
                   <td>${theatre.thatreName}</td>
                   <td>${theatre.city}</td>
-                  <td>
-                    <a href="/TheatreTable/updateTheater/${theatre.theatreId}" class="btn btn-warning">Update</a>
-                  </td>
                   <td>
                     <a href="/TheatreTable/deletTheater/${theatre.theatreId}" class="btn btn-danger">Delete</a>
                   </td>

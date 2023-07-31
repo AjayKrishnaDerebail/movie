@@ -20,7 +20,6 @@ public class MovieList {
  @ManyToOne
  @JoinColumn(name="theater")
  private Theatre theater;
-
  private int screenCapacity;
  private int availabilityOfSeats;
  public MovieList() {

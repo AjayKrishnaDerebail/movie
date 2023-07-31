@@ -103,7 +103,7 @@
                     <label for="numOfSeats">Select Number of Seats</label>
                     <br>
                     <br>
-                    <sp:input path="numOfSeats" type="number" class="form-control" placeholder="Enter number of seats" min="1" />
+                    <sp:input path="numOfSeats" type="number" class="form-control" placeholder="Enter number of seats" min="1" required="required"/>
                     <form:errors path="numOfSeats" cssClass="text-danger" />
 
                     <div class="d-inline-flex p-2">

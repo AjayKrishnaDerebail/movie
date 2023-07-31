@@ -3,9 +3,10 @@ package com.movie.bean;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-
 public class Theatre {
  @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +19,11 @@ public class Theatre {
 
  private String city;
 
-
  public Theatre() {
-
  super();
-
  }
+ @OneToMany(mappedBy = "theater", cascade = CascadeType.ALL, orphanRemoval = true)
+ private List<MovieList> movies = new ArrayList<>();
 
  public Theatre (Integer theatreId, String thatreName, String city) {
   this.theatreId = theatreId;

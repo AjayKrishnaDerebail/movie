@@ -166,7 +166,7 @@
                                         </div>
                                         <div class="form-outline mb-4">
                                             <label class="form-label" for="password">Password</label>
-                                            <input type="password" name="password" id="password" class="form-control" placeholder="Password" />
+                                            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="required" />
                                         </div>
                                         <div id="validation-messages"></div>
                                         <input type="submit" value="Submit">

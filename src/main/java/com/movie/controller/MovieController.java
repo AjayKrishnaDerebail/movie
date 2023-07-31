@@ -1,13 +1,11 @@
 package com.movie.controller;
 
-import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
 
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -20,8 +18,7 @@ import com.movie.repository.TheatreRepository;
 import com.movie.service.MovieService;
 
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 @Controller
 @RequestMapping("/MovieTable")
@@ -48,10 +45,7 @@ public class MovieController {
 
   }
 
-  //	List<MovieList> movie=movieService.listMovies();
-
   model.addAttribute("movies", movieService.listMovies());
-
   return "moviesList";
 
  }
@@ -59,17 +53,12 @@ public class MovieController {
  @RequestMapping("/addMovie")
 
  public String addTheatre(Model m, HttpSession session) {
-
   if (session.getAttribute("admin") == null) {
-
    return "redirect:/";
-
   }
 
   m.addAttribute("theaters", theaterRepo.findAll());
-
   m.addAttribute("movie", new MovieList());
-
   return "addMovie";
 
  }
@@ -83,27 +72,19 @@ public class MovieController {
  }
 
  @PostMapping("/addMovie")
-
  public String saveMovie(@ModelAttribute("movie") @Valid MovieList movie,@RequestParam("screen_id") int screenId,
                          Theatre theater, Model m, HttpSession session ) {
-
   if (session.getAttribute("admin") == null) {
-
    return "redirect:/";
-
   }
 
   System.out.println("saveMovie");
 
-  //theaterRepo.save(theater);
-
   movie.setTheater(movie.getTheater());
-
   movie.setScreenId(screenId);
   movie.setAvailabilityOfSeats(movie.getScreenCapacity());
 
 
-  //movieService.saveMovie(movie);
   try {
    // Code to save the movie to the database
    movieService.saveMovie(movie);
@@ -112,7 +93,6 @@ public class MovieController {
   } catch (DataIntegrityViolationException e) {
    // If the exception is caught, it means the uniqueness constraint is violated
    m.addAttribute("errorMessage", "A movie with the same theater and screen ID already exists.");
-
    m.addAttribute("theaters", theaterRepo.findAll());
    m.addAttribute("movies", movieService.listMovies());
    return "addMovie";
@@ -120,49 +100,24 @@ public class MovieController {
 
   m.addAttribute("theaters", theaterRepo.findAll());
   m.addAttribute("movies", movieService.listMovies());
-
   return "redirect:/MovieTable/movieList";
-
  }
 
- //	@PostMapping("/addMovie")
-
- //	public MovieList saveMovie(@RequestBody MovieList movie){
-
- //
-
- // return movieService.saveMovie(movie);
-
- //
-
- // }
-
  @PutMapping("/movies")
-
  public MovieList updateMovie(@RequestBody MovieList movie) {
-
   return movieService.saveMovie(movie);
-
  }
 
  @GetMapping("/updateMovie/{id}")
-
  public String updateMovie(@PathVariable("id") Integer id, Model model, HttpSession session) {
-
   if (session.getAttribute("admin") == null) {
-
    return "redirect:/";
-
   }
 
   MovieList movie = movieService.findByMovieId(id);
-
   List < Theatre > theaters = theaterRepo.findAll();
-
   model.addAttribute("theater", theaters);
-
   model.addAttribute("movie", movie);
-
   return "updateMovie";
 
  }
@@ -170,11 +125,8 @@ public class MovieController {
  @PostMapping("/updateMovie/{id}")
 
  public String updatedMovie(@ModelAttribute("movie") MovieList movie, Theatre theater, Model m, HttpSession session) {
-
   if (session.getAttribute("admin") == null) {
-
    return "redirect:/";
-
   }
 
   MovieList existingMovie = movieService.findByMovieId(movie.getMovieId());
@@ -220,31 +172,5 @@ public class MovieController {
   return "redirect:/MovieTable/movieList";
 
  }
-
- //
-
- // @PostMapping("/movies/{id}/book")
-
- // public String confirmBooking(@PathVariable("id") Long id, @RequestParam String name, @RequestParam String email) {
-
- // Optional<MovieList> movie = movieService.findByMovieId(id);
-
- // if (movie.isPresent()) {
-
- // // create a new booking record in the database
-
- // return "redirect:/confirmation";
-
- //
-
- // } else {
-
- // return "redirect:/movies";
-
- //
-
- // }
-
- //}
 
 }

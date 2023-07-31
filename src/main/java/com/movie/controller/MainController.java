@@ -65,7 +65,7 @@ public class MainController {
 
  @GetMapping("/loginPage")
  public String showLoginForm() {
-  return "/";
+  return "Home";
  }
 
  @PostMapping("/loginPage")
