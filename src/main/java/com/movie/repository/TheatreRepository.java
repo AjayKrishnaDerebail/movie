@@ -22,8 +22,6 @@ public interface TheatreRepository extends JpaRepository<Theatre, Integer> {
 
  Theatre findByTheatreId(int id);
 
- //List<Theatre> findAllByThatreName();
-
 
 
 }
