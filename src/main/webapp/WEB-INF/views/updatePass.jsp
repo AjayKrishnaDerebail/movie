@@ -64,7 +64,8 @@
                     <form method="post" action="/updatePass">
                       <div class="form-outline mb-4">
                         <label class="form-label" for="pass">Enter New Password</label>
-                        <input type="password" name="pass" id="pass" class="form-control" placeholder="Password" />
+                        <input type="password" name="pass" id="pass" class="form-control" placeholder="Password" minlength="8"
+                         title="mininum length of 8 required" />
                       </div>
                       <div class="text-center pt-1 mb-5 pb-1">
                         <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Update</button>

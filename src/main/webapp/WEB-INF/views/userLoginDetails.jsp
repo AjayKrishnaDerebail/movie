@@ -46,7 +46,6 @@
     </div>
     <hr>
     <h2>This is Your Customer ID ${cust}</h2>
-    <h2>This Is Password :${pass}</h2>
     <br>
     <br>
     <p>To go back to home page <a href="/logout">Click here</a> <p>

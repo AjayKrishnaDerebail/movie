@@ -34,6 +34,9 @@
         background-color: #04AA6D;
         color: white;
       }
+      #theaterRow {
+          display: none;
+        }
     </style>
   </head>
   <body>
@@ -63,11 +66,9 @@
             <form:input path="genre" value="${movie.genre }" />
           </td>
         </tr>
-        <tr>
+        <tr id="theaterRow">
           <td>Theater:</td><%--
-						<c:if test="${theaters.size()>0}">
-
- --%> <td>
+						<c:if test="${theaters.size()>0}">--%> <td>
             <form:label path="theater"></form:label>
             <form:select path="theater.theatreId" items="${theater}" itemValue="theatreId" itemLable="name" />
         </tr>

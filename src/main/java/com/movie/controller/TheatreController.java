@@ -46,6 +46,9 @@ public class TheatreController {
 
   System.out.println("List theater");
 
+  // List<Theatre> theatreNames=;
+
+  // model.addAttribute("theatreNames", theatreNames);
   try {
    return "theaterList";
   } catch (Exception e) {
@@ -96,6 +99,8 @@ public class TheatreController {
 
   try {
    System.out.println("hello");
+   String theaterName = theater.getThatreName().toLowerCase();
+   theater.setThatreName(theaterName);
    theatreService.saveTheatre(theater);
    m.addAttribute("msg", "Inserted Successfully");
   } catch (DataIntegrityViolationException e) {
@@ -124,6 +129,8 @@ public class TheatreController {
   Theatre theater = theatreService.findByTheatreId(theatreId);
 
   m.addAttribute("theater", theater);
+
+  //	System.out.println(theater.getThatreName());
 
   Theatre th = new Theatre();
 
@@ -177,6 +184,7 @@ public class TheatreController {
 
   }
 
+  //movS.deleteAllById(theaRepo.findByTheatreId(Id).getTheatreId());
 
   theaRepo.deleteById((Id));
 
@@ -198,6 +206,7 @@ public class TheatreController {
 
   List < BookingTable > booki = bookRepo.findAll();
 
+  //m.addAttribute("book", "Booked successfully");
 
   m.addAttribute("bookings", booki);
 

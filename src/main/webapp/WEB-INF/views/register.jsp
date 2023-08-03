@@ -78,6 +78,10 @@
             font-size: 14px;
             margin-top: 5px;
         }
+        .required-asterisk::after {
+                    content: " *";
+                    color: red;
+                }
     </style>
         <script>
             function validateForm() {
@@ -107,6 +111,12 @@
                 } else {
                     document.getElementById('email').classList.remove('error-input');
                 }
+                 if (password === "" || !validatePassword(password)) {
+                        validationMessages += "Please enter a valid password.<br>";
+                        document.getElementById('password').classList.add('error-input');
+                    } else {
+                        document.getElementById('password').classList.remove('error-input');
+                    }
 
                 // Get the div element to display validation messages
                 var validationDiv = document.getElementById('validation-messages');
@@ -127,6 +137,8 @@
                 var re = /\S+@\S+\.\S+/;
                 return re.test(email);
             }
+
+
         </script>
 </head>
 <body>
@@ -143,7 +155,7 @@
                                 <div class="card-body p-md-5 mx-md-4">
                                     <form method="post" action="loginInsert" modelAttribute="customer" onsubmit="return validateForm()">
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Name</span>
+                                            <span class="input-group-text required-asterisk" id="inputGroup-sizing-default">Name</span>
                                             <input type="text" name="name" id="name" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="20" />
                                         </div>
                                         <p>Gender</p>
@@ -151,22 +163,24 @@
                                         <input type="radio" name="gender" value="Female">Female
                                         <br>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Present Address</span>
+                                            <span class="input-group-text " id="inputGroup-sizing-default">Present Address</span>
                                             <input type="text" name="presentAddress" id="presentAddress" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" required="required" />
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Mobile</span>
+                                            <span class="input-group-text required-asterisk" id="inputGroup-sizing-default">Mobile</span>
                                             <input type="number" name="phoneNumber" id="phoneNumber" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" maxlength="10" />
                                             <div class="error-message" id="error-phone"></div>
                                         </div>
                                         <div class="input-group mb-3">
-                                            <span class="input-group-text" id="inputGroup-sizing-default">Email</span>
+                                            <span class="input-group-text required-asterisk" id="inputGroup-sizing-default">Email</span>
                                             <input type="email" name="email" id="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
                                             <div class="error-message" id="error-email"></div>
                                         </div>
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="password">Password</label>
-                                            <input type="password" name="password" id="password" class="form-control" placeholder="Password" required="required" />
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text required-asterisk" id="inputGroup-sizing-default">Password</span>
+                                            <input type="password" name="password" id="password" class="form-control" placeholder="Password*" required
+                                                   minlength="8"
+                                            />
                                         </div>
                                         <div id="validation-messages"></div>
                                         <input type="submit" value="Submit">
